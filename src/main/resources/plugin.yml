@@ -1,0 +1,15 @@
+name: StormerAntiSpamReloaded
+version: '${project.version}'
+main: me.loving11ish.stormerantispamreloaded.StormerAntiSpamReloaded
+api-version: 1.13
+folia-supported: true
+softdepend: [ PlugManX ]
+authors: [ Loving11ish, stormer3428 ]
+description: A simple plugin allowing you to have a chat antispam system reworked to be more resource efficient and support Folia.
+commands:
+  antispam:
+    description: "The configuration command"
+  mute:
+    description: "Mutes a player"
+  unmute:
+    description: "Unmutes a player"

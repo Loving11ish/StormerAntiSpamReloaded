@@ -1,0 +1,22 @@
+plugin-prefix: "&c[&aSASReloaded&c]"
+message-pool:
+  - "Hey dude chill!"
+  - "Hey dude relax, take it slow"
+  - "Chillax man, the other dude can't even keep up"
+  - "Chillax man, i'm sure you don't need to send that many messages at once"
+  - "Nah fam, you're going too fast"
+  - "Nah fam, you're going faster than the music"
+  - "Wait a second, the server can't keep up!"
+  - "Wait a second, i need a break"
+  - "Even sonic doesn't type that fast"
+  - "Imma call you flash at this rate"
+  - "Slow down, nothing is on fire, take your time"
+muted-message-pool:
+  - "Looks like you're muted dude..."
+  - "Admins had too much of you..."
+  - "OPS said no more talking for ya..."
+unmuted-message-pool:
+  - "Hey you can speak again!"
+  - "yay, freedom"
+  - "looks like your tongue works again"
+
