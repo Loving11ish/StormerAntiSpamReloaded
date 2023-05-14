@@ -24,7 +24,7 @@ public class PlayerChatEvent implements Listener {
                 }
 
                 StormerAntiSpamReloaded.getPlugin().messagesMap.put(e.getPlayer().getUniqueId(), (Integer)StormerAntiSpamReloaded.getPlugin().messagesMap.get(e.getPlayer().getUniqueId()) + 1);
-                StormerAntiSpamReloaded.getPlugin().foliaLib.getImpl().runLaterAsync(new Runnable() {
+                StormerAntiSpamReloaded.getPlugin().foliaLib.getImpl().runLater(new Runnable() {
                     @Override
                     public void run() {
                         if (StormerAntiSpamReloaded.getPlugin().messagesMap.containsKey(e.getPlayer().getUniqueId())) {

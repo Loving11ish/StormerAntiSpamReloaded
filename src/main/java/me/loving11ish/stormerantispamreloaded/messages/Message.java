@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Message {
 
-    private static final String PLUGIN_PREFIX = StormerAntiSpamReloaded.getPlugin().getConfig().getString("pluginPrefix");
+    private static final String PLUGIN_PREFIX = StormerAntiSpamReloaded.getPlugin().messagesFileManager.getMessagesConfig().getString("plugin-prefix");
     private static final String a;
     private static final String b;
 
