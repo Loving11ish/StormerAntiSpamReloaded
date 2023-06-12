@@ -5,12 +5,14 @@ import com.tcoded.folialib.FoliaLib;
 import com.tcoded.folialib.wrapper.WrappedTask;
 import io.papermc.lib.PaperLib;
 import me.loving11ish.stormerantispamreloaded.commands.AntiSpamCommand;
+import me.loving11ish.stormerantispamreloaded.commands.AntiSpamReloadCommand;
 import me.loving11ish.stormerantispamreloaded.files.MessagesFileManager;
 import me.loving11ish.stormerantispamreloaded.listeners.PlayerChatEvent;
 import me.loving11ish.stormerantispamreloaded.listeners.PlayerDisconnectEvent;
 import me.loving11ish.stormerantispamreloaded.messages.Message;
 import me.loving11ish.stormerantispamreloaded.utils.ColorUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -46,8 +48,9 @@ public final class StormerAntiSpamReloaded extends JavaPlugin {
         if (!(Bukkit.getServer().getVersion().contains("1.13")||Bukkit.getServer().getVersion().contains("1.14")||
                 Bukkit.getServer().getVersion().contains("1.15")||Bukkit.getServer().getVersion().contains("1.16")||
                 Bukkit.getServer().getVersion().contains("1.17")||Bukkit.getServer().getVersion().contains("1.18")||
-                Bukkit.getServer().getVersion().contains("1.19"))){
+                Bukkit.getServer().getVersion().contains("1.19")||Bukkit.getServer().getVersion().contains("1.20"))){
             logger.warning(ColorUtils.translateColorCodes("&4-------------------------------------------"));
+            logger.warning(ColorUtils.translateColorCodes("&6StormerAntiSpamReloaded: &4Your server version is: " + Bukkit.getServer().getVersion()));
             logger.warning(ColorUtils.translateColorCodes("&6StormerAntiSpamReloaded: &4This plugin is only supported on the Minecraft versions listed below:"));
             logger.warning(ColorUtils.translateColorCodes("&6StormerAntiSpamReloaded: &41.13.x"));
             logger.warning(ColorUtils.translateColorCodes("&6StormerAntiSpamReloaded: &41.14.x"));
@@ -56,6 +59,7 @@ public final class StormerAntiSpamReloaded extends JavaPlugin {
             logger.warning(ColorUtils.translateColorCodes("&6StormerAntiSpamReloaded: &41.17.x"));
             logger.warning(ColorUtils.translateColorCodes("&6StormerAntiSpamReloaded: &41.18.x"));
             logger.warning(ColorUtils.translateColorCodes("&6StormerAntiSpamReloaded: &41.19.x"));
+            logger.warning(ColorUtils.translateColorCodes("&6StormerAntiSpamReloaded: &41.20.x"));
             logger.warning(ColorUtils.translateColorCodes("&6StormerAntiSpamReloaded: &4Is now disabling!"));
             logger.warning(ColorUtils.translateColorCodes("&4-------------------------------------------"));
             Bukkit.getPluginManager().disablePlugin(this);
@@ -63,6 +67,7 @@ public final class StormerAntiSpamReloaded extends JavaPlugin {
         }else {
             logger.info(ColorUtils.translateColorCodes("&a-------------------------------------------"));
             logger.info(ColorUtils.translateColorCodes("&6StormerAntiSpamReloaded: &aA supported Minecraft version has been detected"));
+            logger.info(ColorUtils.translateColorCodes("&6StormerAntiSpamReloaded: &4Your server version is: " + Bukkit.getServer().getVersion()));
             logger.info(ColorUtils.translateColorCodes("&6StormerAntiSpamReloaded: &6Continuing plugin startup"));
             logger.info(ColorUtils.translateColorCodes("&a-------------------------------------------"));
         }
@@ -122,6 +127,7 @@ public final class StormerAntiSpamReloaded extends JavaPlugin {
         this.getCommand("antispam").setTabCompleter(antiSpamCommand);
         this.getCommand("mute").setExecutor(antiSpamCommand);
         this.getCommand("unmute").setExecutor(antiSpamCommand);
+        this.getCommand("antispamreload").setExecutor(new AntiSpamReloadCommand());
 
         //Register listeners
         this.getServer().getPluginManager().registerEvents(new PlayerChatEvent(), this);
@@ -143,6 +149,9 @@ public final class StormerAntiSpamReloaded extends JavaPlugin {
     public void onDisable() {
         //Plugin shutdown logic
 
+        //Unregister plugin listeners
+        HandlerList.unregisterAll(this);
+
         //Cancel running tasks
         logger.info(ColorUtils.translateColorCodes("-------------------------------------------"));
         logger.info(ColorUtils.translateColorCodes("&6StormerAntiSpamReloaded: &3Plugin by: &b&lLoving11ish & Stormer3428"));
@@ -162,15 +171,6 @@ public final class StormerAntiSpamReloaded extends JavaPlugin {
         logger.info(ColorUtils.translateColorCodes("-------------------------------------------"));
 
         //Clear any plugin remains
-        this.messagesMap = null;
-        this.messagesFileManager = null;
-        this.messagePool = null;
-        this.mutedMessagePool = null;
-        this.unmutedMessagePool = null;
-        this.muted = null;
-        this.wrappedTask = null;
-        this.foliaLib = null;
-        this.logger = null;
         plugin = null;
     }
 

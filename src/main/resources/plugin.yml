@@ -13,3 +13,16 @@ commands:
     description: "Mutes a player"
   unmute:
     description: "Unmutes a player"
+  antispamreload:
+    description: "Reloads the plugin"
+    permission: antispam.command.reload
+
+permissions:
+  antispam.*:
+    default: op
+    children:
+      antispam.command.*:
+        default: op
+        children:
+          antispam.command.reload:
+            default: op
